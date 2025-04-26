@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Luckiest_Guy } from "next/font/google";
 import "./globals.css";
 import { SelectedLanguagesProvider } from "./providers";
+import Head from "next/head";
 
 const bricolageGrotesque = Luckiest_Guy({
   weight: ["400"],
@@ -77,15 +78,15 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
   },
   openGraph: {
-    title: "Ragool Krishnan | Front-End Developer",
+    title: "Ragool Krishnan | Web Developer",
     description:
-      "Innovative Front-End Engineer crafting high-performance, SEO-optimized React & Next.js applications with TypeScript and intuitive user experiences.",
+      "Innovative Web Developer crafting high-performance, SEO-optimized React & Next.js applications with TypeScript and intuitive user experiences.",
     url: "https://www.ragools.com",
     siteName: "Ragool Krishnan Portfolio",
     type: "website",
@@ -101,9 +102,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ragool Krishnan | Front-End Developer",
+    title: "Ragool Krishnan | Web Developer",
     description:
-      "Innovative Front-End Engineer crafting high-performance, SEO-optimized React & Next.js applications with TypeScript and intuitive user experiences.",
+      "Innovative Web Developer crafting high-performance, SEO-optimized React & Next.js applications with TypeScript and intuitive user experiences.",
     site: "@your_twitter_handle",
     creator: "@your_twitter_handle",
     images: ["https://www.ragools.com/og-image.png"],
@@ -124,6 +125,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta name="robots" content="index, follow" />
+      </Head>
       <body
         className={`${bricolageGrotesque.variable} ${spaceGrotesk.variable} antialiased`}
       >
