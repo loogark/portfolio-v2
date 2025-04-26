@@ -1,9 +1,14 @@
-<svg
+export function Spiral() {
+  return (
+    <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
       width="95%"
       height="95%"
-  style="background-color:#4831D4; border-radius:50%;"
+      style={{
+        backgroundColor: "#4831D4",
+        borderRadius: "50%",
+      }}
       viewBox="0 0 5000.000000 5000.000000"
       preserveAspectRatio="xMidYMid meet"
     >
@@ -289,3 +294,5 @@ c-476 723 -1036 1671 -1424 2407 -35 66 -77 145 -93 175 -67 123 -453 902
         />
       </g>
     </svg>
+  );
+}
