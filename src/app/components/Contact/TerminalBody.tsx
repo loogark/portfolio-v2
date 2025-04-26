@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { TerminalBodyProps, QuestionType } from "./types";
 import { InitialText } from "./InitialText";
 import { PreviousQuestions } from "./PreviousQuestions";
-import CurrentLine from "./CurrentLine";
-import Summary from "./Summary";
+import { CurrentLine } from "./CurrentLine";
+import { Summary } from "./Summary";
 import { useTranslation } from "../../internationalization/useTranslation";
 import { useSelectedLanguage } from "../../context";
 
@@ -18,46 +18,46 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
   const [focused, setFocused] = useState(false);
   const [error, setError] = useState("");
 
-  const buildStartQuestion = (): QuestionType => ({
-    key: "option",
-    text: translate("Would you like to connect via", "questionStartText"),
-    postfix: translate(
-      "1) Social Links or 2) Contact Form?",
-      "questionStartPostfix"
-    ),
-    complete: false,
-    value: "",
-  });
+  function buildStartQuestion() {
+    return {
+      key: "option",
+      text: translate("Would you like to connect via", "questionStartText"),
+      postfix: translate("1) Social Links or 2) Contact Form?", "questionStartPostfix"),
+      complete: false,
+      value: "",
+    };
+  }
 
-  const buildContactQuestions = (): QuestionType[] => [
-    {
-      key: "email",
-      text: translate("To start, could you give us", "questionEmailText"),
-      postfix: translate("your email?", "questionEmailPostfix"),
-      complete: false,
-      value: "",
-    },
-    {
-      key: "name",
-      text: translate("Awesome! And what's", "questionNameText"),
-      postfix: translate("your name?", "questionNamePostfix"),
-      complete: false,
-      value: "",
-    },
-    {
-      key: "description",
-      text: translate("Perfect, and", "questionDescriptionText"),
-      postfix: translate("how can we help you?", "questionDescriptionPostfix"),
-      complete: false,
-      value: "",
-    },
-  ];
+  function buildContactQuestions() {
+    return [
+      {
+        key: "email",
+        text: translate("To start, could you give us", "questionEmailText"),
+        postfix: translate("your email?", "questionEmailPostfix"),
+        complete: false,
+        value: "",
+      },
+      {
+        key: "name",
+        text: translate("Awesome! And what's", "questionNameText"),
+        postfix: translate("your name?", "questionNamePostfix"),
+        complete: false,
+        value: "",
+      },
+      {
+        key: "description",
+        text: translate("Perfect, and", "questionDescriptionText"),
+        postfix: translate("how can we help you?", "questionDescriptionPostfix"),
+        complete: false,
+        value: "",
+      },
+    ];
+  }
 
-  // 3) reset to first question any time the language changes
   useEffect(() => {
     setQuestions([buildStartQuestion()]);
     setError("");
-  }, [selectedLang]);
+  }, [selectedLang]); // ✅ Only depends on selectedLang now
 
   const curQuestion = questions.find((q) => !q.complete);
 
@@ -67,7 +67,6 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
 
     if (curQuestion?.key === "start") {
       if (trimmed === "1") {
-        // Social Links path
         setQuestions((prev) =>
           prev.map((q) =>
             q.key === "start"
@@ -76,7 +75,6 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
           )
         );
       } else if (trimmed === "2") {
-        // Contact Form path
         setQuestions(buildContactQuestions());
       } else {
         setError(translate("Please type 1 or 2.", "errorType1Or2"));
@@ -85,10 +83,7 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
       const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
       if (!isValidEmail) {
         setError(
-          translate(
-            "That doesn’t look like a valid email address.",
-            "errorInvalidEmail"
-          )
+          translate("That doesn’t look like a valid email address.", "errorInvalidEmail")
         );
         return;
       }
@@ -106,13 +101,13 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
     }
   };
 
-  // for the Social Links branch
   const firstQ = questions[0];
   if (firstQ?.complete && firstQ.value === "Social Links") {
     const goToContactForm = () => {
       setQuestions(buildContactQuestions());
       setError("");
     };
+
     const resetAll = () => {
       setQuestions([buildStartQuestion()]);
       setError("");
@@ -122,7 +117,6 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
       <div className="px-2 md:px-4 py-3 md:py-6 text-xs md:text-base text-slate-100">
         <InitialText />
         <PreviousQuestions questions={questions} />
-
         <p className="mt-4 text-xs md:text-base">
           {translate(
             "Awesome! Here are my social links. Choose an option to open one:",
@@ -183,12 +177,10 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
     );
   }
 
-  // default render: either ask the next question or show the summary
   return (
     <div className="px-2 sm:px-4 py-3 sm:py-6 text-xs sm:text-sm md:text-base text-slate-100">
       <InitialText />
       <PreviousQuestions questions={questions} />
-
       {curQuestion ? (
         <>
           <p className="mt-2 text-xs sm:text-sm md:text-base">

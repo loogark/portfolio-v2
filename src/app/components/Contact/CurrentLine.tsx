@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState, FormEvent, ChangeEvent, useRef } from "react";
 import { CurrentLineProps } from "./types";
 
-export default function CurrentLine({
+export function CurrentLine({
   text,
-  focused,
   setText,
   setFocused,
   inputRef,
@@ -76,8 +75,8 @@ export default function CurrentLine({
         />
       </form>
       <p>
-        <span className="text-emerald-400">➜</span>{" "}
-        <span className="text-cyan-300">~</span>{" "}
+        <span className="text-emerald-400">➜</span>
+        <span className="text-cyan-300">~</span>
         {command && <span className="opacity-50">Choose an {command}: </span>}
         {text}
         <motion.span

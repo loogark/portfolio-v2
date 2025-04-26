@@ -20,7 +20,6 @@ export function Tooltip({
   const popperRef = useRef<HTMLDivElement>(null);
   const popperInstance = useRef<ReturnType<typeof createPopper> | null>(null);
 
-  // portal container
   const portalContainer = useRef<HTMLElement>(null);
   useEffect(() => {
     const el = document.createElement("div");
@@ -31,7 +30,6 @@ export function Tooltip({
     };
   }, []);
 
-  // create/destroy popper when tooltip mounts/unmounts or placement changes
   useEffect(() => {
     if (visible && referenceRef.current && popperRef.current) {
       popperInstance.current = createPopper(
@@ -52,7 +50,6 @@ export function Tooltip({
     };
   }, [visible, placement]);
 
-  // force an update whenever visible flips
   useEffect(() => {
     if (visible) popperInstance.current?.update();
   }, [visible]);

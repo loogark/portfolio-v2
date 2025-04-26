@@ -20,7 +20,7 @@ export interface CurrentLineProps {
   setFocused: Dispatch<SetStateAction<boolean>>;
   inputRef: RefObject<HTMLInputElement | null>;
   command: string;
-  handleSubmitLine: Function;
+  handleSubmitLine: (text: string) => void;
   containerRef: RefObject<HTMLDivElement | null>;
 }
 

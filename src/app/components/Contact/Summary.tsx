@@ -1,27 +1,30 @@
 "use client";
+
 import { useState, useEffect, FormEvent } from "react";
 import { FiCheckCircle } from "react-icons/fi";
 import { SummaryProps } from "./types";
 import emailjs from "@emailjs/browser";
 import { useTranslation } from "../../internationalization/useTranslation";
 
-export default function Summary({ questions, setQuestions }: SummaryProps) {
+export function Summary({ questions, setQuestions }: SummaryProps) {
   const [translate] = useTranslation();
   const [complete, setComplete] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"success" | "error" | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const firstQuestion = {
-    key: "start",
-    text: translate("Would you like to connect via", "questionStartText"),
-    postfix: translate(
-      "1) Social Links or 2) Contact Form?",
-      "questionStartPostfix"
-    ),
-    complete: false,
-    value: "",
-  };
+  function resetToBeginning() {
+    const firstQuestion = {
+      key: "start",
+      text: translate("Would you like to connect via", "questionStartText"),
+      postfix: translate("1) Social Links or 2) Contact Form?", "questionStartPostfix"),
+      complete: false,
+      value: "",
+    };
+    setQuestions([firstQuestion]);
+    setStatus(null);
+    setComplete(false);
+  }
 
   useEffect(() => {
     if (status === "success") {
@@ -31,13 +34,7 @@ export default function Summary({ questions, setQuestions }: SummaryProps) {
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [status]);
-
-  const resetToBeginning = () => {
-    setQuestions([firstQuestion]);
-    setStatus(null);
-    setComplete(false);
-  };
+  }, [status]); // ✅ No unstable deps anymore
 
   const editField = (key: string) => {
     setQuestions((prev) =>
@@ -72,7 +69,7 @@ export default function Summary({ questions, setQuestions }: SummaryProps) {
         }
       );
 
-    (event.target as any).reset();
+    (event.target as HTMLFormElement).reset();
   };
 
   const formValues = questions.reduce((acc, val) => {

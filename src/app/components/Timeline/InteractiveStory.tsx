@@ -7,7 +7,6 @@ import { createRoot } from "react-dom/client";
 import { scenes } from "./data";
 import { FaArrowLeft, FaArrowRight, FaRedo } from "react-icons/fa";
 import { animateFlightPath } from "./utils";
-import { useAnimation } from "framer-motion";
 import { Intro } from "./Intro";
 import distance from "@turf/distance";
 import { point } from "@turf/helpers";
@@ -28,7 +27,6 @@ export function InteractiveStory() {
   const sceneIndexRef = useRef<number>(-1);
   const isMapReadyRef = useRef(false);
   const [showFinalOverlay, setShowFinalOverlay] = useState(false);
-  const controls = useAnimation();
   const [translate] = useTranslation();
   const isMobile = useIsMobile();
 

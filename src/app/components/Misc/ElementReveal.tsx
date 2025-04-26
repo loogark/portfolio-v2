@@ -33,7 +33,7 @@ export function ElementReveal({
         slideControls.start("visible");
       }
     }
-  }, [isInView, hideSlide]);
+  }, [isInView, hideSlide, mainControls, slideControls]);
 
   return (
     <div ref={ref} className="relative w-fit overflow-hidden">

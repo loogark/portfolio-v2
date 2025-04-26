@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
   FaHtml5,
@@ -108,7 +108,6 @@ interface OrbitingIconsProps extends TechIcon {
 const OrbitingIcons = ({
   icon,
   color,
-  label,
   radius,
   duration,
   offsetAngle,
@@ -121,19 +120,19 @@ const OrbitingIcons = ({
 
   const controlsRef = useRef<ReturnType<typeof animate> | null>(null);
 
-  const startAnimation = () => {
+  const startAnimation = useCallback(() => {
     const current = angle.get();
     controlsRef.current = animate(angle, current + 2 * Math.PI, {
       ease: "linear",
       duration,
       repeat: Infinity,
     });
-  };
+  }, [controlsRef, angle, duration]);
 
   useEffect(() => {
     startAnimation();
     return () => controlsRef.current?.stop();
-  }, [angle, duration]);
+  }, [angle, duration, startAnimation]);
 
   useEffect(() => {
     if (isPaused) {
@@ -141,7 +140,7 @@ const OrbitingIcons = ({
     } else {
       startAnimation();
     }
-  }, [isPaused]);
+  }, [isPaused, startAnimation]);
 
   return (
     <motion.div

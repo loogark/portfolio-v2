@@ -13,10 +13,13 @@ export default function Home() {
   return (
     <div className="relative w-full h-full">
       <Hero />
-      <TimelineSection />
+      <TimelineSection />  
       <ProjectsSection />
+     
       <StackSection />
+      
       <ContactSection />
+     
       <Footer />
     </div>
   );

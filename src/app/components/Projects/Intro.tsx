@@ -14,8 +14,8 @@ export function Intro() {
     <div className="flex h-fit w-full flex-col justify-start py-12 md:sticky md:top-0 md:h-screen">
       <ElementReveal color="bg-secondary">
         <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 mt-2 leading-tight text-secondary">
-          <span className="text-pink-500">//</span>{" "}
-          {translate(
+        <span className="text-pink-500 mr-2">{`//`}</span>
+        {translate(
             "Pixels, Paths & Protocols Turning Ideas Into Interfaces",
             "introSectionHeading"
           )}

@@ -3,6 +3,7 @@
 import { motion, MotionValue, useTransform } from "framer-motion";
 import { useTranslation } from "../../internationalization/useTranslation";
 import { ProjectType } from "./data";
+import Image from "next/image";
 
 interface CarouselItemProps {
   scrollYProgress: MotionValue<number>;
@@ -40,8 +41,10 @@ export const CarouselItem = ({
             loading="lazy"
           />
         ) : (
-          <img
-            src={project.src}
+          <Image
+            src={project.src ?? ""}
+            width={300}  
+            height={300} 
             alt={translate(project.titleFallback, project.titleKey)}
             className="absolute inset-0 h-full w-full object-cover"
           />

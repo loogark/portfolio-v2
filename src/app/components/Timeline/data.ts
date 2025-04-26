@@ -7,6 +7,12 @@ import {
   FaRocket,
 } from "react-icons/fa";
 
+
+type IconProps = {
+  size?: number;
+  color?: string;
+} & React.SVGProps<SVGSVGElement>;
+
 export interface SceneDefinition {
   location: [number, number];
   zoom: number;
@@ -17,7 +23,7 @@ export interface SceneDefinition {
   textFallback: string;
   dateKey: keyof Dictionaries[LangKeys];
   dateFallback: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<IconProps>;
   country: string;
   minZoom: number;
   maxZoom: number;
