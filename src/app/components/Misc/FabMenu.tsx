@@ -68,9 +68,16 @@ export function FabMenu() {
           staggerChildren: isOpen ? 0.1 : 0.05,
           delayChildren: isOpen ? 0.2 : 0,
         }}
-        className={`absolute z-40 bottom-12 md:bottom-8 right-4 md:right-8 h-10 flex items-center ${
-          isOpen ? "justify-start" : "justify-center"
-        } bg-custom-white text-gray-800 rounded-full shadow-lg overflow-hidden`}
+        className={`fixed z-50
+          top-4            
+          md:top-auto      
+          md:bottom-8      
+          right-4          
+          md:right-8       
+          h-10 flex items-center
+          ${isOpen ? "justify-start" : "justify-center"}
+          bg-custom-white text-gray-800 rounded-full
+          shadow-lg overflow-hidden`}
       >
         {isOpen && (
           <>
