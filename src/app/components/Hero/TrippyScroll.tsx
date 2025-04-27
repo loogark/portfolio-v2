@@ -2,7 +2,7 @@
 import { JSX } from "react";
 import { motion, MotionValue } from "framer-motion";
 
-const NUM_SECTIONS = 45;
+const NUM_SECTIONS = 25;
 const PADDING = `${100 / NUM_SECTIONS / 2}vmin`;
 
 const primary = "#4831D4";
