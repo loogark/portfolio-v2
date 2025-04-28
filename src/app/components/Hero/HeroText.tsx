@@ -21,13 +21,9 @@ export function HeroText({ opacity }: HeroTextProps) {
       <FabMenu></FabMenu>
 
       <div
-        className="
-          absolute 
-          w-full inset-0                     
-          flex items-center justify-center z-30                        
-          md:inset-auto md:bottom-2 md:left-5 md:flex-none md:justify-start md:items-start
-        "
-      >
+  className=" absolute inset-0 flex items-center justify-center z-30 md:inset-y-0 md:left-5 md:right-auto md:justify-start
+  "
+>
         <div className="flex max-w-7xl items-end justify-between p-2 md:p-8">
           <div>
             <div className="flex flex-col items-center md:items-start">
