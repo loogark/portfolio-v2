@@ -28,17 +28,17 @@ export function HeroText({ opacity }: HeroTextProps) {
           <div>
             <div className="flex flex-col items-center md:items-start">
               <ElementReveal hideSlide delay={0.3}>
-                <h1 className="max-w-4xl w-fit text-5xl font-black leading-[1.1] text-zinc-800 md:text-8xl">
+                <h1 className="w-fit text-5xl font-black leading-[1.1] text-zinc-800 md:text-8xl 2xl:text-[6.5vmax]">
                   {translate("I'm Ragool,", "heroGreeting1")}
                 </h1>
               </ElementReveal>
               <ElementReveal hideSlide delay={0.4}>
-                <h1 className="max-w-4xl w-fit text-5xl font-black leading-[1.1] text-zinc-800 md:text-8xl">
+                <h1 className="w-fit text-5xl font-black leading-[1.1] text-zinc-800 md:text-8xl 2xl:text-[6.5vmax]">
                   {translate("Your friendly Neighborhood", "heroGreeting2")}
                 </h1>
               </ElementReveal>
               <ElementReveal hideSlide delay={0.5}>
-                <h1 className="max-w-4xl w-fit text-5xl font-black leading-[1.1] text-primary  md:text-8xl">
+                <h1 className="w-fit text-5xl font-black leading-[1.1] text-primary  md:text-8xl 2xl:text-[6.5vmax]">
                   {translate("web developer", "heroRole")}
                 </h1>
               </ElementReveal>
@@ -47,7 +47,7 @@ export function HeroText({ opacity }: HeroTextProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.8 }}
-              className="max-w-xl text-sm text-slate-700 md:text-lg"
+              className="max-w-xl text-sm text-slate-700 md:text-lg  2xl:text-xl"
             >
               {" "}
               {translate(

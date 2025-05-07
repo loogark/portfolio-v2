@@ -32,7 +32,7 @@ export const WatermarkWrapper = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.1 }}
+      transition={{ duration: 0.01 }}
       className="absolute inset-0 h-full w-full overflow-hidden"
     >
       {" "}

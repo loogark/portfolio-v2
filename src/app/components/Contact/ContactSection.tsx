@@ -32,18 +32,18 @@ export const ContactSection = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={formInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="flex flex-col justify-center h-fit px-0 md:px-4 my-14"
+        className="flex flex-col justify-center h-fit px-0 md:px-4 my-14 2xl:my-[12vh]"
       >
-        <div className="w-full sm:w-auto mx-auto p-2 sm:p-4 bg-secondary rounded-xl shadow-2xl">
+        <div className="w-full sm:w-auto 2xl:w-8/12 mx-auto p-2 sm:p-4 bg-secondary rounded-xl shadow-2xl">
           <div
             ref={containerRef}
             onClick={() => inputRef.current?.focus()}
             className="
-              w-full max-w-full sm:max-w-3xl 
-              h-64 sm:h-96 
-              bg-slate-950 backdrop-blur rounded-lg 
-              overflow-y-scroll shadow-xl cursor-text font-mono
-            "
+  w-full max-w-full sm:max-w-3xl 2xl:max-w-full 2xl:h-[50rem]
+  h-64 sm:h-96 
+  bg-slate-950 backdrop-blur rounded-lg 
+  overflow-y-scroll shadow-xl cursor-text font-mono
+"
           >
             <TerminalHeader />
             <TerminalBody inputRef={inputRef} containerRef={containerRef} />

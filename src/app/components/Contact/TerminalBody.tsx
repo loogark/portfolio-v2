@@ -57,7 +57,7 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
   useEffect(() => {
     setQuestions([buildStartQuestion()]);
     setError("");
-  }, [selectedLang]); // ✅ Only depends on selectedLang now
+  }, [selectedLang]); 
 
   const curQuestion = questions.find((q) => !q.complete);
 
@@ -114,7 +114,7 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
     };
 
     return (
-      <div className="px-2 md:px-4 py-3 md:py-6 text-xs md:text-base text-slate-100">
+      <div className="w-full px-2 md:px-4 py-3 md:py-6 text-xs md:text-base text-slate-100">
         <InitialText />
         <PreviousQuestions questions={questions} />
         <p className="mt-4 text-xs md:text-base">
@@ -178,7 +178,7 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
   }
 
   return (
-    <div className="px-2 sm:px-4 py-3 sm:py-6 text-xs sm:text-sm md:text-base text-slate-100">
+    <div className="w-full px-2 sm:px-4 py-3 sm:py-6 text-xs sm:text-sm md:text-base text-slate-100">
       <InitialText />
       <PreviousQuestions questions={questions} />
       {curQuestion ? (
