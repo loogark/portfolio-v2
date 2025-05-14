@@ -30,7 +30,7 @@ const itemVariants = {
 };
 
 export function FabMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { selectedLang, setSelectedLang } = useSelectedLanguage();
   const otherLang = selectedLang === "en" ? "fr" : "en";
