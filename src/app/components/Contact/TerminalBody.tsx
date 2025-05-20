@@ -18,21 +18,24 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
   const [focused, setFocused] = useState(false);
   const [error, setError] = useState("");
 
-  function buildStartQuestion() {
+  function buildStartQuestion(): QuestionType {
     return {
       key: "option",
       text: translate("Would you like to connect via", "questionStartText"),
-      postfix: translate("1) Social Links or 2) Contact Form?", "questionStartPostfix"),
+      postfix: translate(
+        "1) Social Links or 2) Contact Form?",
+        "questionStartPostfix"
+      ),
       complete: false,
       value: "",
     };
   }
 
-  function buildContactQuestions() {
+  function buildContactQuestions(): QuestionType[] {
     return [
       {
         key: "email",
-        text: translate("To start, could you give us", "questionEmailText"),
+        text: translate("To start, could you give me", "questionEmailText"),
         postfix: translate("your email?", "questionEmailPostfix"),
         complete: false,
         value: "",
@@ -47,7 +50,10 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
       {
         key: "description",
         text: translate("Perfect, and", "questionDescriptionText"),
-        postfix: translate("how can we help you?", "questionDescriptionPostfix"),
+        postfix: translate(
+          "What can I help you with?",
+          "questionDescriptionPostfix"
+        ),
         complete: false,
         value: "",
       },
@@ -57,19 +63,23 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
   useEffect(() => {
     setQuestions([buildStartQuestion()]);
     setError("");
-  }, [selectedLang]); 
+  }, [selectedLang]);
 
   const curQuestion = questions.find((q) => !q.complete);
+  const shouldShowSummary =
+    questions.length > 0 &&
+    curQuestion === undefined &&
+    questions.every((q) => q.complete);
 
   const handleSubmitLine = (value: string) => {
     const trimmed = value.trim();
     setError("");
 
-    if (curQuestion?.key === "start") {
+    if (curQuestion?.key === "option") {
       if (trimmed === "1") {
         setQuestions((prev) =>
           prev.map((q) =>
-            q.key === "start"
+            q.key === "option"
               ? { ...q, complete: true, value: "Social Links" }
               : q
           )
@@ -83,7 +93,10 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
       const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
       if (!isValidEmail) {
         setError(
-          translate("That doesn’t look like a valid email address.", "errorInvalidEmail")
+          translate(
+            "That doesn’t look like a valid email address.",
+            "errorInvalidEmail"
+          )
         );
         return;
       }
@@ -181,7 +194,10 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
     <div className="w-full px-2 sm:px-4 py-3 sm:py-6 text-xs sm:text-sm md:text-base text-slate-100">
       <InitialText />
       <PreviousQuestions questions={questions} />
-      {curQuestion ? (
+
+      {shouldShowSummary ? (
+        <Summary questions={questions} setQuestions={setQuestions} />
+      ) : curQuestion ? (
         <>
           <p className="mt-2 text-xs sm:text-sm md:text-base">
             {curQuestion.text}{" "}
@@ -205,9 +221,7 @@ export function TerminalBody({ containerRef, inputRef }: TerminalBodyProps) {
             containerRef={containerRef}
           />
         </>
-      ) : (
-        <Summary questions={questions} setQuestions={setQuestions} />
-      )}
+      ) : null}
     </div>
   );
 }
