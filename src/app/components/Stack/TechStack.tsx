@@ -9,6 +9,7 @@ import {
   FaGitAlt,
   FaReact,
   FaNodeJs,
+  FaAngular,
 } from "react-icons/fa";
 import {
   SiNextdotjs,
@@ -18,12 +19,12 @@ import {
   SiStyledcomponents,
   SiDocker,
   SiFlutter,
-  SiJirasoftware,
   SiFigma,
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
 import { Spiral } from "./Spiral";
+import { TbBrandReactNative } from "react-icons/tb";
 
 interface TechIcon {
   icon: React.ReactNode;
@@ -49,6 +50,7 @@ const baseOrbitGroups: Array<{
     baseRadius: 150,
     duration: 18,
     icons: [
+      { icon: <FaAngular />, color: "red", label: "Angular" },
       { icon: <SiTailwindcss />, color: "#38BDF8", label: "Tailwind CSS" },
       { icon: <FaHtml5 />, color: "#E34F26", label: "HTML5" },
       { icon: <FaCss3Alt />, color: "#1572B6", label: "CSS3" },
@@ -76,7 +78,7 @@ const baseOrbitGroups: Array<{
     icons: [
       { icon: <SiDocker />, color: "#2496ED", label: "Docker" },
       { icon: <SiFlutter />, color: "#02569B", label: "Flutter" },
-      { icon: <SiJirasoftware />, color: "#0052CC", label: "Jira" },
+      { icon: <TbBrandReactNative />, color: "#0052CC", label: "Native" },
       { icon: <SiFigma />, color: "#F24E1E", label: "Figma" },
     ],
   },
