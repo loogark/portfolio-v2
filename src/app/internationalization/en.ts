@@ -23,7 +23,7 @@ export const en = {
   // — English (en) keys & values:
   sceneBirthplaceTitle: "Birthplace",
   sceneBirthplaceText:
-    "I was born in southern India, a place that would later shape the beginning of my journey",
+    "I was born in southern India, a place that would later shape the beginning of my journey.",
   sceneBirthplaceDate: "April 1995",
 
   sceneMiddleSchoolTitle: "Middle School",
